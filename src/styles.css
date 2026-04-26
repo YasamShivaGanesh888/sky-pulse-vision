@@ -1,0 +1,211 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import "leaflet/dist/leaflet.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sky: var(--sky);
+  --color-storm: var(--storm);
+  --color-warm: var(--warm);
+  --color-cool: var(--cool);
+  --color-aurora: var(--aurora);
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+
+  /* Light: clear sky */
+  --background: oklch(0.98 0.012 230);
+  --foreground: oklch(0.18 0.04 250);
+  --card: oklch(1 0 0 / 0.6);
+  --card-foreground: oklch(0.18 0.04 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 250);
+  --primary: oklch(0.55 0.19 245);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.94 0.03 230);
+  --secondary-foreground: oklch(0.25 0.06 250);
+  --muted: oklch(0.95 0.015 235);
+  --muted-foreground: oklch(0.5 0.04 250);
+  --accent: oklch(0.85 0.14 195);
+  --accent-foreground: oklch(0.18 0.04 250);
+  --destructive: oklch(0.62 0.24 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.5 0.04 250 / 0.15);
+  --input: oklch(0.5 0.04 250 / 0.18);
+  --ring: oklch(0.55 0.19 245);
+
+  --sky: oklch(0.65 0.16 235);
+  --storm: oklch(0.4 0.08 270);
+  --warm: oklch(0.72 0.18 50);
+  --cool: oklch(0.78 0.1 200);
+  --aurora: oklch(0.7 0.18 160);
+
+  --gradient-clear-day: linear-gradient(180deg, oklch(0.78 0.13 230) 0%, oklch(0.92 0.08 210) 100%);
+  --gradient-clear-night: linear-gradient(180deg, oklch(0.18 0.06 270) 0%, oklch(0.28 0.08 260) 100%);
+  --gradient-cloudy: linear-gradient(180deg, oklch(0.7 0.03 240) 0%, oklch(0.82 0.02 230) 100%);
+  --gradient-rain: linear-gradient(180deg, oklch(0.42 0.05 250) 0%, oklch(0.55 0.06 240) 100%);
+  --gradient-storm: linear-gradient(180deg, oklch(0.22 0.04 270) 0%, oklch(0.35 0.05 260) 100%);
+  --gradient-snow: linear-gradient(180deg, oklch(0.88 0.02 230) 0%, oklch(0.96 0.01 220) 100%);
+  --gradient-mist: linear-gradient(180deg, oklch(0.78 0.02 220) 0%, oklch(0.86 0.015 215) 100%);
+
+  --gradient-aurora: linear-gradient(135deg, oklch(0.6 0.18 245), oklch(0.65 0.18 195), oklch(0.7 0.18 160));
+  --gradient-card: linear-gradient(135deg, oklch(1 0 0 / 0.7), oklch(1 0 0 / 0.4));
+
+  --shadow-glass: 0 8px 32px oklch(0.2 0.05 250 / 0.12), inset 0 1px 0 oklch(1 0 0 / 0.5);
+  --shadow-glow: 0 0 40px oklch(0.55 0.19 245 / 0.35);
+  --shadow-elev: 0 20px 60px -20px oklch(0.2 0.05 250 / 0.4);
+
+  --transition-smooth: 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark {
+  --background: oklch(0.14 0.03 260);
+  --foreground: oklch(0.96 0.01 230);
+  --card: oklch(0.22 0.04 260 / 0.55);
+  --card-foreground: oklch(0.96 0.01 230);
+  --popover: oklch(0.22 0.04 260);
+  --popover-foreground: oklch(0.96 0.01 230);
+  --primary: oklch(0.72 0.17 235);
+  --primary-foreground: oklch(0.14 0.03 260);
+  --secondary: oklch(0.26 0.05 260);
+  --secondary-foreground: oklch(0.96 0.01 230);
+  --muted: oklch(0.24 0.04 260);
+  --muted-foreground: oklch(0.7 0.03 235);
+  --accent: oklch(0.6 0.16 195);
+  --accent-foreground: oklch(0.14 0.03 260);
+  --destructive: oklch(0.68 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(1 0 0 / 0.1);
+  --input: oklch(1 0 0 / 0.12);
+  --ring: oklch(0.72 0.17 235);
+
+  --gradient-card: linear-gradient(135deg, oklch(0.3 0.05 260 / 0.6), oklch(0.22 0.04 260 / 0.35));
+  --shadow-glass: 0 8px 32px oklch(0 0 0 / 0.5), inset 0 1px 0 oklch(1 0 0 / 0.08);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .glass {
+    background: var(--gradient-card);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-strong {
+    background: color-mix(in oklab, var(--card) 85%, transparent);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .text-gradient {
+    background: var(--gradient-aurora);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Weather-reactive backgrounds */
+.bg-clear-day { background: var(--gradient-clear-day); }
+.bg-clear-night { background: var(--gradient-clear-night); }
+.bg-cloudy { background: var(--gradient-cloudy); }
+.bg-rain { background: var(--gradient-rain); }
+.bg-storm { background: var(--gradient-storm); }
+.bg-snow { background: var(--gradient-snow); }
+.bg-mist { background: var(--gradient-mist); }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px oklch(0.55 0.19 245 / 0.3); }
+  50% { box-shadow: 0 0 40px oklch(0.55 0.19 245 / 0.6); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes skypulse-ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-fade-up { animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Leaflet overrides for theming */
+.leaflet-container {
+  background: oklch(0.85 0.04 230);
+  font-family: inherit;
+}
+.dark .leaflet-container { background: oklch(0.2 0.04 260); }
+.leaflet-control-attribution {
+  background: color-mix(in oklab, var(--card) 80%, transparent) !important;
+  color: var(--muted-foreground) !important;
+  backdrop-filter: blur(8px);
+}
+.leaflet-control-attribution a { color: var(--primary) !important; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: var(--popover) !important;
+  color: var(--popover-foreground) !important;
+  box-shadow: var(--shadow-elev);
+}
